@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using System.Windows.Forms;
 
 namespace Estacionamento
 {
@@ -31,11 +32,12 @@ namespace Estacionamento
             try
             {
                 conexao.Open();//Solicitando a entrada ao banco de dados
+                
 
             }
             catch (Exception e)// Se caso der Algum erro no Banco de dados
             {
-                Console.WriteLine("Algo deu Errado Como Assim!!\n\n" + e); // Erro Tecnico
+                MessageBox.Show("Algo deu Errado Como Assim!!\n\n" + e); // Erro Tecnico
                 conexao.Close(); // Fechando a conexão com banco de dados 
             }//Fim da tentativa de conexão com banco de dados
         }//Fim do Contrutor
@@ -45,13 +47,12 @@ namespace Estacionamento
         {
             try
             {
-                dados = "('" + placa + "','" + modelo + "','" + cor + "')";
-                resultado = "insert into veiculos(placa,modelo,cor) values" + dados;
+                dados = "('','" + placa + "','" + modelo + "','" + cor + "')";
+                resultado = "insert into veiculo(codigo, placa, modelo, cor) values" + dados;
                 // EXECULTAR O COMANDO RESULTADO NO BANCO DE DADOS
                 MySqlCommand sql = new MySqlCommand(resultado, conexao); // VAI ESTRAR NO PROGRAMA NO BANCO DE DADOS "CONEXÃO"
                 resultado = "" + sql.ExecuteNonQuery();// EXECULTAR E GUARDAR O " RESULTADO ", CONTRA O ENTER DO BANCO DE DADOS.
-                Console.WriteLine(resultado);
-
+                MessageBox.Show(resultado + "Dados salvos com sucesso!");
             }
             catch (Exception erro)
             {
@@ -94,10 +95,7 @@ namespace Estacionamento
                 }//fim do while
                 //Fechar o dataReader
                 leitura.Close();      
-            
-
         }//Fim preencher vetor     
-
 
         public string ConsultarTudo()
         {
@@ -116,9 +114,7 @@ namespace Estacionamento
             return msg;
         }//fim do consultarTudo
 
-
-
-        public long ConsultarCodigo(long codd)
+        public int ConsultarCodigo(int codd)
         {
             VetorAuto();
             for (long i = 0; i < contador; i++)
@@ -131,57 +127,46 @@ namespace Estacionamento
             return -1;
         }//fim do consultarcpf
 
-
-
-        public string ConsultarPlaca(string codd)
+        public string ConsultarPlaca(int codd)
         {
             VetorAuto();
             for (long i = 0; i < contador; i++)
             {
-                if (codd == placa[i])
+                if (codd == Convert.ToInt32(placa[i]))
                 {
                     return placa[i];
                 }
             }//fim do for
-            return "Nome não encontrado";
+            return "Placa não encontrado";
         }//fim do consultarnome
 
-        public string ConsultarModelo(string codd)
+        public string ConsultarModelo(int codd)
         {
             VetorAuto();
             for (long i = 0; i < contador; i++)
             {
-                if (codd == modelo[i])
+                if (codd == Convert.ToInt32(modelo[i]))
                 {
                     return modelo[i];
                 }
             }//fim do for
-            return "Nome não encontrado";
+            return "Modelo não encontrado";
         }//fim do consultarnome
 
-
-
-        public string ConsultarCor(string codd)
+        public string ConsultarCor(int codd)
         {
             VetorAuto();
             for (long i = 0; i < contador; i++)
             {
-                if (codd == cor[i])
+                if (codd == Convert.ToInt32(cor[i]))
                 {
                     return cor[i];
                 }
             }//fim do for
-            return "Telefone não encontrado!";
-
-
+            return "Cor não encontrado!";
 
         }//Fim do consultar telefone
-
-
-
-
-
-        public void Atualizar(string campo, string novoDado, string codigo)
+        public void Atualizar(string campo, string novoDado, int codigo)
         {
             try
             {
@@ -192,48 +177,21 @@ namespace Estacionamento
                 resultado = "" + sql.ExecuteNonQuery();
                 Console.WriteLine("Dado Atualizado com Sucesso!");
             }
-
-
-
             catch (Exception e)
             {
-
-
-
                 Console.WriteLine("Algo deu errado!" + e);
-
-
-
             }//fim do atualizar
-
-
-
         }
 
-
-
-
-        public void Deletar(string codd)
+        public void Deletar(int codd)
         {
-
-
-
             resultado = "delete from pessoa where codigo = '" + cod + "'";
             //Executar o comando
             MySqlCommand sql = new MySqlCommand(resultado, conexao);
             resultado = "" + sql.ExecuteNonQuery();
             //Mensagem...
             Console.WriteLine("Dados Excluídos com sucesso!");
-
-
-
-
         } //fim do deletar
-
-
-
-
-
 
     }//fim da classe
 }//fim do projeto

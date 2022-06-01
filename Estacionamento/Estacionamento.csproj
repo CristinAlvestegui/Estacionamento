@@ -47,14 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\Videos\Trabalho.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\..\..\..\Videos\Trabalho.Designer.cs">
-      <DependentUpon>Trabalho.cs</DependentUpon>
-    </Compile>
     <Compile Include="Auto.cs" />
     <Compile Include="Cadastrar.cs" />
+    <Compile Include="DAO.cs" />
     <Compile Include="Date.cs" />
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -82,9 +77,17 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="..\..\..\..\Videos\Trabalho.resx">
-      <DependentUpon>Trabalho.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Saida.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Saida.Designer.cs">
+      <DependentUpon>Saida.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
     </EmbeddedResource>
@@ -99,14 +102,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
+    <EmbeddedResource Include="Saida.resx">
+      <DependentUpon>Saida.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -142,13 +143,28 @@
     <None Include="Resources\302-3026464_png-file-svg-login-member-icon-png.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Placa-Mercosul-Foto-Reprodução.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\model_main_comprar-lt-1-0-pacote-r8d_cf7fbf644f.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\circulo-cromatico.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MicrosoftTeams-image.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MicrosoftTeams-image %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\MicrosoftTeams-image %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CPF.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Nome.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Telefone.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

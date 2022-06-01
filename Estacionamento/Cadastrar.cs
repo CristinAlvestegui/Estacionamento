@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MySql.Data;//Imports para conexão com o banco de dados
 using MySql.Data.MySqlClient;//Imports para realizar comandos no banco
+using System.Windows.Forms;
 
 namespace Estacionamento
 {
@@ -29,6 +30,7 @@ namespace Estacionamento
             try
             {
                 conexao.Open();//Solicitando a entrada ao banco de dados
+                MessageBox.Show("Bem-vindo ao Estacionamento");
                 
             }
             catch (Exception e)
@@ -48,12 +50,12 @@ namespace Estacionamento
                 //Executar o comando resultado no banco de dados
                 MySqlCommand sql = new MySqlCommand(resultado, conexao);
                 resultado = "" + sql.ExecuteNonQuery();
-                Console.WriteLine(resultado + " Linha(s) Afetada(s)!");//temos que fazer um mensagem pop-up para mostrar que os dados foram salvos com sucesso!
+                MessageBox.Show(resultado + " Dados salvos com sucesso");//temos que fazer um mensagem pop-up para mostrar que os dados foram salvos com sucesso!
 
             }
             catch (Exception e)
             {
-                Console.WriteLine("Algo deu errado!\n\n" + e);
+                MessageBox.Show("Algo deu errado!\n\n" + e);
             }//fim do catch
         }//fim do método inserir
 
@@ -87,13 +89,11 @@ namespace Estacionamento
                 nome[i] = leitura["nome"] + "";
                 telefone[i] = leitura["telefone"] + "";
 
-
                 i++;
                 contador++;
             }//fim do while
-
-            //Fechar o dataReader
-            leitura.Close();
+          
+            leitura.Close(); //Fechar o dataReader
         }//fim do preencher Vetor
 
         public string ConsultarTudo()
@@ -106,7 +106,6 @@ namespace Estacionamento
                 msg += "\n\nCpf: " + cpf[i]
                     + ", Nome: " + nome[i]
                     + ", Telefone: " + telefone[i];
-
             }//fim do for
             return msg;
         }//fim do consultarTudo
@@ -148,7 +147,6 @@ namespace Estacionamento
                 }
             }//fim do for
             return "Telefone não encontrado!";
-
         }//Fim do consultar telefone
 
 
@@ -164,32 +162,21 @@ namespace Estacionamento
                 resultado = "" + sql.ExecuteNonQuery();
                 Console.WriteLine("Dado Atualizado com Sucesso!");
             }
-
             catch (Exception e)
             {
-
                 Console.WriteLine("Algo deu errado!" + e);
 
             }//fim do atualizar
-
         }
-
 
         public void Deletar(long cpf)
         {
-
             resultado = "delete from pessoa where codigo = '" + cpf + "'";
             //Executar o comando
             MySqlCommand sql = new MySqlCommand(resultado, conexao);
             resultado = "" + sql.ExecuteNonQuery();
             //Mensagem...
             Console.WriteLine("Dados Excluídos com sucesso!");
-
-
         } //fim do deletar
-
-
-
-
     }//fim da classe
 }//fim do projeto

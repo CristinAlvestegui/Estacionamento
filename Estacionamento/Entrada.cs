@@ -12,8 +12,10 @@ namespace Estacionamento
 {
     public partial class Entrada : Form
     {
+        DAO dao;
         public Entrada()
         {
+            dao = new DAO("Estacionamento");
             InitializeComponent();
         }
 
@@ -26,5 +28,29 @@ namespace Estacionamento
         {
            //= monthCalendar1.DateSelected();
         }
-    }
-}
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            DateTime dataE = DateTime.Now;
+            DateTime horaE = DateTime.Now;
+            MessageBox.Show("" + dataE, "" + horaE);
+            dao.EntradaBoa(dataE, horaE);
+            //dao.VetorDataE();
+        }//fim do botão para Entrada
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void Entrada_Load(object sender, EventArgs e)
+        {
+            
+        }
+    }//Fim da classe
+}//Fim do projeto

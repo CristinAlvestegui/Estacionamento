@@ -14,13 +14,13 @@ namespace Estacionamento
     {
 
         Cadastrar cadas;
-        Veiculo vei;
+         CadastrarVeiculo vei;
         
         public Form2()
         {
 
             cadas = new Cadastrar("Estacionamento");
-            vei = new Veiculo();
+            vei = new CadastrarVeiculo();
             InitializeComponent();
         }
 
@@ -51,12 +51,12 @@ namespace Estacionamento
 
         public string ConteTexCPF()
         {
-            return textBox4.Text;
+            return maskedTextBox1.Text;
         }//Fim do método para textbox2
 
         public string ConteTexTele()
         {
-            return textBox5.Text;
+            return maskedTextBox2.Text;
         }//Fim do método prara textbox3
 
         private void Salvar_Click(object sender, EventArgs e)
@@ -67,7 +67,7 @@ namespace Estacionamento
 
         private void Form2_Load_1(object sender, EventArgs e)
         {
-
+            
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -112,12 +112,29 @@ namespace Estacionamento
 
         private void Salva_Click(object sender, EventArgs e)
         {
-            
+            maskedTextBox1.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
             long cpf = Convert.ToInt64(ConteTexCPF());
             string nome = ConteudoTextBox();
             string telefone = ConteTexTele();
             cadas.Inserir(cpf, nome, telefone);
             cadas.PreencherVetor();
+            textBox6.Clear();
+            maskedTextBox1.Clear();
+            maskedTextBox2.Clear();
+        }
+            private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void maskedTextBox2_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+
+        private void btnSair_Click(object sender, EventArgs e)
+        {
+            
         }
     }//Fim da classe
 }//Fim do Projeto
